@@ -28,9 +28,18 @@ func TestHealthFunc(t *testing.T) {
 		t.Fatalf("unable to create request: %v", err)
 	}
 	expectedResponseCode := http.StatusOK
+	expectedContentType := "application/json"
+	expectedBody := `{"version":"sample-version","commit":"123-123-123","description":"Web API for ANZ"}`
 
 	healthFunc(w, r)
-	if w.Code != expectedResponseCode {
-		t.Fatalf("Expected response code to be '%v', got '%v'", expectedResponseCode, w.Code)
+
+	if got := w.Code; got != expectedResponseCode {
+		t.Fatalf("Expected response code to be '%v', got '%v'", expectedResponseCode, got)
+	}
+	if got := w.Header().Get("Content-Type"); got != expectedContentType {
+		t.Fatalf("expected content type to be '%v', got '%v'", expectedContentType, got)
+	}
+	if got := w.Body.String(); got != expectedBody {
+		t.Fatalf("expected body to be '%v', got '%v'", expectedBody, got)
 	}
 }
