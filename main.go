@@ -32,20 +32,20 @@ func handler() http.Handler {
 func healthFunc(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
-	body, err := json.Marshal(Information{
+	body, err := json.Marshal(HealthcheckBody{
 		Description: "Web API for ANZ",
 		Commit:      CommitSHA,
 		Version:     VERSION,
 	})
 	if err != nil {
-		// How to test this scenario?
+		// TODO: How to test this scenario?
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 	w.Write(body)
 }
 
-// Information is the body structure of the healthcheck endpoint
-type Information struct {
+// HealthcheckBody is the body structure of the healthcheck endpoint
+type HealthcheckBody struct {
 	Version     string `json:"version"`
 	Commit      string `json:"commit"`
 	Description string `json:"description"`
