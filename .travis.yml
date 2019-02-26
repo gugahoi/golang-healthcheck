@@ -1,8 +1,10 @@
 language: go
+services:
+- docker
 go:
 - "1.11"
 install:
 - go get -u github.com/mattn/goveralls
 script:
-- make test
+- make docker-build
 - goveralls -service=travis-ci
