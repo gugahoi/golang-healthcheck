@@ -7,8 +7,11 @@ test:
 	go test -v ./... -cover
 
 .PHONY: build
+build: SHA=$(shell git log -1 --pretty=format:"%H")
 build:
-	go build -o build/golang-healthcheck ./...
+	go build -o build/golang-healthcheck \
+		-ldflags="-X main.Version=$(TAG) \
+		-X main.CommitSHA=$(SHA)" ./...
 
 .PHONY: docker-build
 docker-build:

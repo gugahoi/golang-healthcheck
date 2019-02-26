@@ -6,8 +6,8 @@ import (
 	"net/http"
 )
 
-// VERSION is the application version
-var VERSION = "sample-version"
+// Version is the application version
+var Version = "sample-version"
 
 // CommitSHA is the latet commit that will be populated at build time
 var CommitSHA = "123-123-123"
@@ -35,7 +35,7 @@ func healthFunc(w http.ResponseWriter, r *http.Request) {
 	body, err := json.Marshal(HealthcheckBody{
 		Description: "Web API for ANZ",
 		Commit:      CommitSHA,
-		Version:     VERSION,
+		Version:     Version,
 	})
 	if err != nil {
 		// TODO: How to test this scenario?
@@ -47,6 +47,6 @@ func healthFunc(w http.ResponseWriter, r *http.Request) {
 // HealthcheckBody is the body structure of the healthcheck endpoint
 type HealthcheckBody struct {
 	Version     string `json:"version"`
-	Commit      string `json:"commit"`
+	Commit      string `json:"lastcommitsha"`
 	Description string `json:"description"`
 }
