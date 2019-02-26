@@ -6,6 +6,7 @@ RUN make test
 FROM golang:1.11 as builder
 WORKDIR /go/src/github.com/gugahoi/golang-healthcheck
 ADD ./ ./
+ARG TAG
 RUN make build
 
 FROM scratch

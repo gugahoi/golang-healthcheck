@@ -15,7 +15,7 @@ build:
 
 .PHONY: docker-build
 docker-build:
-	docker build -t $(REPOSITORY):$(TAG) .
+	docker build --build-arg TAG=$(TAG) -t $(REPOSITORY):$(TAG) .
 
 .PHONY: docker-run
 docker-run: docker-build
