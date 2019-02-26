@@ -35,8 +35,8 @@ func handler() http.Handler {
 
 // Healthfunc '200 OK' and replies with some basic information regarding the application
 func healthFunc(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
 	body, err := json.Marshal(HealthcheckBody{
 		Description: "Web API for ANZ",
 		Commit:      CommitSHA,
