@@ -37,16 +37,25 @@ func handler() http.Handler {
 func healthFunc(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	body, err := json.Marshal(HealthcheckBody{
-		Description: "Web API for ANZ",
-		Commit:      CommitSHA,
-		Version:     Version,
+	body, err := json.Marshal(ApplicationInfo{
+		Name: []HealthcheckBody{
+			{
+				Description: "Web API for ANZ",
+				Commit:      CommitSHA,
+				Version:     Version,
+			},
+		},
 	})
 	if err != nil {
 		// TODO: How to test this scenario?
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 	w.Write(body)
+}
+
+// ApplicationInfo is the top level application information
+type ApplicationInfo struct {
+	Name []HealthcheckBody `json:"golang-healthchecker"`
 }
 
 // HealthcheckBody is the body structure of the healthcheck endpoint
