@@ -10,6 +10,6 @@ ARG TAG
 RUN make build
 
 FROM scratch
-COPY --from=builder /go/src/github.com/gugahoi/golang-healthcheck/build/golang-healthcheck /app
+COPY --from=builder /go/src/github.com/gugahoi/golang-healthcheck/build/app /app
 EXPOSE 80
 ENTRYPOINT [ "/app" ]

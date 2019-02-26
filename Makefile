@@ -10,9 +10,9 @@ test:
 .PHONY: build
 build: SHA=$(shell git log -1 --pretty=format:"%H")
 build:
-	go build -o build/golang-healthcheck \
+	CGO_ENABLED=0 go build -o build/app \
 		-ldflags="-X main.Version=$(TAG) -X main.CommitSHA=$(SHA)" \
-		./...
+		.
 
 .PHONY: docker-build
 docker-build:
