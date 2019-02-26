@@ -2,9 +2,18 @@ language: go
 services:
 - docker
 go:
-- "1.11"
+- '1.11'
 install:
 - go get -u github.com/mattn/goveralls
 script:
 - make docker-build
 - goveralls -service=travis-ci
+deploy:
+  provider: script
+  script: make docker-push
+  on:
+    tags: true
+env:
+  global:
+  - secure: VK/je2z2RyhlNMbLZZy0QUV3y9xEID9CLXasChYPvKbD4CQrnevOIOT3QHogvpANpSNOUyZuhUHiM0kARALjJBFWmH1GfTFX93xOZtcR/kBP2o4AXW5SfFgKXOScBDRS/i4LsWuhNWdn8hAz1B5VYN2FkwSp8PImYWkZ9o72dZoU3lpk2jn7PWpNBNtVmZTMUeUZ0xwTvy+NhmQrrRemovouY/3ZVZU9mACSz5AT+bEl6SROxWSiMnX5Uce4WdmUFsqZ/EjIkFtm5sZSpdDBQOFqWPcO2Ro3jfg6JTPdEf53wrMmavCyErB0N7oYBuk00UMqExbqKa6qjtAr+0j7cG0UcOm2FoahrZrGcEsr8EwGQK8uzUSmPL66jSDdrri2PEoCJpM2SxN0w01JW3/Fj33m2hd1yJwP4X/3EFD/HtJLfQk07poHkXQc/1gBWYLCp+21sXEW/iDyzt5wuEFMobkIZ4YqvrzwqhJVWChOkDj53+7VJ/OmFhD4ksL/Yo42ujuwSQ9UoAysbNj0AYHxJPterTW0OhONRgsrE/4GywJVLm6plRATbbBunwKJzMftVLF+lznULNbu16Lc5Dks6Grl0Lo/lwM7cVIy5YrX+Mb+6skF1Rsax3vAFGZA71DCnOz9qvx+so1oUDRgpCAf0O2swUGB+lZ6SphPbZB7Ys0=
+  - secure: Y03h1YfJZOY/ceAbKgYmM1IrtAKA1PJPgfFJuedLM/jUQTXA1rtA8FJxjTxU/3fN+0W395L7SMnIpoFyghWZ/kW86ZNfDmUcRRboK8pPCh/B9lBJXwc4d4Cb/7L7bPyGtsVJgNtU4WZJMirWCAya8Aj/WqVcfsWGgOA9Wmr3yG+ITwR23p9ROhDj+MUiFtu6PoNIJVak7JJcHIED5EQhICl22J598DrpxeCVfFD4k6+F8Lmiba450A9BP63/w2dLV/Y7fzLXuwiEc8FtTI0GSQus3DXwlsUflEj4Zv4r/1A14jGWa/KL+xND82aox6MB0WFBzckd9bW/625bj18FZ3tfmQdQLrBGaHBg2ZWHL1rJtalloTTjZihHduBDFZPKl1VHCEoImpQ0LHdfs+gxBcHXKxq2lymvIvXVSGojLTULVa4Zwya5gLYv29++3vScW4oXCMpRmne7QbzF5BkEajsxIcsWsAJerH7WQSrYDptEJViwwKB5anNFDDxHMguHaQ2py3Rq8D129TL/qEYByhYR0cqUyI6BzLeiSGKZ4DhCIIs3UJFiXbetgu24ixqDq1RhNxhZ3HsDaKO6+iosgDBbxBdBjp28eHlQ9ElSvrMS56KfdON8p4zY7SfZUwCnFqS/VltIIvi6meSBXRAGOB7Nun3t9ETdOvHbXbww8s4=

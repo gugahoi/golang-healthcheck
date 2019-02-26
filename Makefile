@@ -20,3 +20,8 @@ docker-build:
 .PHONY: docker-run
 docker-run: docker-build
 	docker run -it -p 8080:80 $(REPOSITORY):$(TAG)
+
+.PHONY: docker-push
+docker-push: docker-build
+	echo "$(DOCKER_PASSWORD)" | docker login -u "$(DOCKER_USERNAME)" --password-stdin
+	docker push $(REPOSITORY):$(TAG)
