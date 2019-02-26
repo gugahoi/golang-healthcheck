@@ -29,7 +29,7 @@ func TestHealthFunc(t *testing.T) {
 	}
 	expectedResponseCode := http.StatusOK
 	expectedContentType := "application/json"
-	expectedBody := `{"version":"sample-version","lastcommitsha":"123-123-123","description":"Web API for ANZ"}`
+	expectedBody := `{"golang-healthchecker":[{"version":"sample-version","lastcommitsha":"123-123-123","description":"Web API for ANZ"}]}`
 
 	healthFunc(w, r)
 
