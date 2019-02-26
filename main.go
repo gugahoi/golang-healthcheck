@@ -33,7 +33,7 @@ func handler() http.Handler {
 	return h
 }
 
-// Healthfunc simple writes a '200 OK' header
+// Healthfunc '200 OK' and replies with some basic information regarding the application
 func healthFunc(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
