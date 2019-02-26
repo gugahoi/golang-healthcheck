@@ -1,6 +1,6 @@
 
 REPOSITORY := gugahoi/golang-healthcheck
-TAG ?= latest
+TAG := $(if $(TRAVIS_TAG),$(TRAVIS_TAG),'latest')
 
 .PHONY: test
 test:
