@@ -5,4 +5,5 @@ RUN CGO_ENABLED=0 go build -o /build/app .
 
 FROM scratch
 COPY --from=builder /build/app /app
+EXPOSE 80
 ENTRYPOINT [ "/app" ]
