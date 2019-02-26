@@ -16,13 +16,13 @@ var port string
 func init() {
 	// Port could be read from ENV variable or from flags later on
 	port = ":80"
+	log.Printf("Listening on %v", port)
 }
 
 // Main simply starts and http server with the /healthchek endpoint
 func main() {
-	log.Printf("Listening on %v", port)
 	if err := http.ListenAndServe(port, handler()); err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 }
 
