@@ -23,22 +23,22 @@ This project produces docker images on each git tag. To run the image simply con
 or to test the endpoint with an ephemeral port:
 
 ```bash
-> ID=$(docker run -it --rm -p 80 -d gugahoi/golang-healthcheck:123)
+> ID=$(docker run -it --rm -p 80 -d gugahoi/golang-healthcheck:0.0.3)
 > curl -v $(docker port ${ID} 80)/healthcheck
 *   Trying 0.0.0.0...
 * TCP_NODELAY set
-* Connected to 0.0.0.0 (127.0.0.1) port 32769 (#0)
+* Connected to 0.0.0.0 (127.0.0.1) port 32771 (#0)
 > GET /healthcheck HTTP/1.1
-> Host: 0.0.0.0:32769
+> Host: 0.0.0.0:32771
 > User-Agent: curl/7.54.0
 > Accept: */*
 >
 < HTTP/1.1 200 OK
-< Date: Tue, 26 Feb 2019 02:16:34 GMT
-< Content-Length: 108
+< Date: Tue, 26 Feb 2019 02:20:52 GMT
+< Content-Length: 110
 < Content-Type: text/plain; charset=utf-8
 <
 * Connection #0 to host 0.0.0.0 left intact
-{"version":"123","lastcommitsha":"ff60f240e72cabcd86b1cac852d156abffdee837","description":"Web API for ANZ"}
+{"version":"0.0.3","lastcommitsha":"b26b8ac3215b14dbf03cb1ad94d842fe9540e144","description":"Web API for ANZ"}
 ```
 > Note that the application listens on port `80` but if mapping it to different port in the host, access it via the host port.
