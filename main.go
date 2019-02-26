@@ -11,10 +11,15 @@ var Version = "sample-version"
 
 // CommitSHA is the latet commit that will be populated at build time
 var CommitSHA = "123-123-123"
+var port string
+
+func init() {
+	// Port could be read from ENV variable or from flags later on
+	port = ":80"
+}
 
 // Main simply starts and http server with the /healthchek endpoint
 func main() {
-	port := ":80"
 	log.Printf("Listening on %v", port)
 	if err := http.ListenAndServe(port, handler()); err != nil {
 		panic(err)
